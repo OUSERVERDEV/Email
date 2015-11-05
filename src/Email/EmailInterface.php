@@ -10,9 +10,9 @@ interface EmailInterface
     public function getFrom();
 
     /**
-     * @return string
+     * @return array
      */
-    public function getHtml();
+    public function getTo();
 
     /**
      * @return string
@@ -22,37 +22,12 @@ interface EmailInterface
     /**
      * @return string
      */
-    public function getText();
+    public function getBodyText();
 
     /**
-     * @return array
+     * @return string
      */
-    public function getTo();
-
-    /**
-     * @param string $subject
-     */
-    public function setSubject($subject);
-
-    /**
-     * @param string $text
-     */
-    public function setText($text);
-
-    /**
-     * @param string $html
-     */
-    public function setHtml($html);
-
-    /**
-     * @param string $from
-     */
-    public function setFrom($from);
-
-    /**
-     * @param array $to
-     */
-    public function setTo(array $to);
+    public function getBodyHtml();
 
     /**
      * @param array|string $to

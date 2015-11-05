@@ -37,7 +37,7 @@ class Mailer
      */
     public function send(EmailInterface $email, array $options)
     {
-        $sendgridEmail = $this->sendGridEmailFactory->getSendGridEmail($email, $options);
+        $sendgridEmail = $this->sendGridEmailFactory->createSendGridEmail($email, $options);
         $this->sendGrid->send($sendgridEmail);
     }
 }

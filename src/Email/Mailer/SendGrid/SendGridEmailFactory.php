@@ -11,9 +11,9 @@ class SendGridEmailFactory implements SendGridEmailFactoryInterface
      * @param EmailInterface $email
      * @param array          $options
      *
-     * @return mixed
+     * @return Email
      */
-    public function getSendGridEmail(EmailInterface $email, array $options)
+    public function createSendGridEmail(EmailInterface $email, array $options)
     {
         $sendGridEmail = new SendGridEmail();
         $sendGridEmail->addTo($email->getTo());
