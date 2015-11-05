@@ -1,0 +1,24 @@
+{
+    "name": "alexlbr/email",
+    "type": "library",
+    "description": "Send emails in PHP.",
+    "keywords": [
+        "Mail",
+        "sendgrid"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4.0",
+        "sendgrid/sendgrid": "*"
+    },
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "authors": [
+        {
+            "name": "Alex Lobera",
+            "email": "alex.lobera@gmail.com",
+            "role": "Developer"
+        }
+    ]
+}
