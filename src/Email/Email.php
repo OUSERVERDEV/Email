@@ -7,27 +7,27 @@ class Email implements EmailInterface
     /**
      * @var string
      */
-    private $from;
+    protected $from;
 
     /**
      * @var array
      */
-    private $to;
+    protected $to;
 
     /**
      * @var string
      */
-    private $subject;
+    protected $subject;
 
     /**
      * @var string
      */
-    private $bodyHtml;
+    protected $bodyHtml;
 
     /**
      * @var string
      */
-    private $bodyText;
+    protected $bodyText;
 
     /**
      * @param string $from
@@ -51,9 +51,7 @@ class Email implements EmailInterface
     }
 
     /**
-     * Get from
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function getFrom()
     {
@@ -61,9 +59,7 @@ class Email implements EmailInterface
     }
 
     /**
-     * Get to
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function getTo()
     {
@@ -71,11 +67,7 @@ class Email implements EmailInterface
     }
 
     /**
-     * Add to
-     *
-     * @param array|string $to
-     *
-     * @return $this
+     * {@inheritDoc}
      */
     public function addTo($to)
     {
@@ -95,9 +87,7 @@ class Email implements EmailInterface
     }
 
     /**
-     * Get subject
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function getSubject()
     {
@@ -105,9 +95,7 @@ class Email implements EmailInterface
     }
 
     /**
-     * Get bodyHtml
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function getBodyHtml()
     {
@@ -115,9 +103,7 @@ class Email implements EmailInterface
     }
 
     /**
-     * Get bodyText
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function getBodyText()
     {

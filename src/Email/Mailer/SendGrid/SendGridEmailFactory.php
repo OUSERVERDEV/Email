@@ -8,10 +8,7 @@ use Email\EmailInterface;
 class SendGridEmailFactory implements SendGridEmailFactoryInterface
 {
     /**
-     * @param EmailInterface $email
-     * @param array          $options
-     *
-     * @return Email
+     * {@inheritDoc}
      */
     public function createSendGridEmail(EmailInterface $email, array $options)
     {

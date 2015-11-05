@@ -3,9 +3,10 @@
 namespace Email\Mailer\SendGrid;
 
 use Email\EmailInterface;
+use Email\Mailer\MailerInterface;
 use SendGrid;
 
-class Mailer
+class Mailer implements MailerInterface
 {
     /**
      * @var SendGrid $sendGrid
@@ -30,10 +31,7 @@ class Mailer
     }
 
     /**
-     * @param EmailInterface $email
-     * @param array          $options
-     *
-     * @throws SendGrid\Exception
+     * {@inheritDoc}
      */
     public function send(EmailInterface $email, array $options)
     {
