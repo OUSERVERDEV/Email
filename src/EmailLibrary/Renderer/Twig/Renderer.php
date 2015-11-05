@@ -1,8 +1,8 @@
 <?php
 
-namespace Email\Render\Twig;
+namespace Alexlbr\EmailLibrary\Render\Twig;
 
-use Email\Render\RendererInterface;
+use Alexlbr\EmailLibrary\Render\RendererInterface;
 
 /**
  * Class Renderer.

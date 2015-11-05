@@ -1,6 +1,6 @@
 <?php
 
-namespace Email\Render;
+namespace Alexlbr\EmailLibrary\Render;
 
 interface RendererInterface
 {

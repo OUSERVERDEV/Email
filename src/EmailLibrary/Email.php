@@ -1,6 +1,6 @@
 <?php
 
-namespace Email;
+namespace Alexlbr\EmailLibrary;
 
 class Email implements EmailInterface
 {

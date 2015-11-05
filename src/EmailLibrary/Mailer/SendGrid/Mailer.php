@@ -1,10 +1,10 @@
 <?php
 
-namespace Email\Mailer\SendGrid;
+namespace Alexlbr\EmailLibrary\Mailer\SendGrid;
 
-use Email\EmailInterface;
-use Email\Mailer\MailerException;
-use Email\Mailer\MailerInterface;
+use Alexlbr\EmailLibrary\EmailInterface;
+use Alexlbr\EmailLibrary\Mailer\MailerException;
+use Alexlbr\EmailLibrary\Mailer\MailerInterface;
 use SendGrid;
 
 class Mailer implements MailerInterface

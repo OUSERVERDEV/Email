@@ -1,9 +1,9 @@
 <?php
 
-namespace Email\Mailer;
+namespace Alexlbr\EmailLibrary\Mailer;
 
-use Email\EmailInterface;
-use Email\Mailer\MailerException;
+use Alexlbr\EmailLibrary\EmailInterface;
+use Alexlbr\EmailLibrary\Mailer\MailerException;
 
 /**
  * Interface MailerInterface.

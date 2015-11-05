@@ -1,8 +1,8 @@
 <?php
 
-namespace Email\Mailer\SendGrid;
+namespace Alexlbr\EmailLibrary\Mailer\SendGrid;
 
-use Email\EmailInterface;
+use Alexlbr\EmailLibrary\EmailInterface;
 use SendGrid\Email;
 
 interface SendGridEmailFactoryInterface

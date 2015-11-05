@@ -1,6 +1,6 @@
 <?php
 
-namespace Email\Mailer;
+namespace Alexlbr\EmailLibrary\Mailer;
 
 class MailerException extends \RuntimeException
 {

@@ -13,7 +13,7 @@
         "sendgrid/sendgrid": "~4.0"
     },
     "autoload": {
-        "psr-4": { "": "src/" }
+        "psr-4": { "Alexlbr\\": "src/" }
     },
     "authors": [
         {
