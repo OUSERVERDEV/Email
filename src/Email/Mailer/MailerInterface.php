@@ -2,10 +2,16 @@
 
 namespace Email\Mailer;
 
+use Email\EmailInterface;
+
 /**
  * Interface MailerInterface.
  */
 interface MailerInterface
 {
-    public function send();
+    /**
+     * @param EmailInterface $email
+     * @param array          $options
+     */
+    public function send(EmailInterface $email, array $options);
 }

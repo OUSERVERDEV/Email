@@ -2,7 +2,8 @@
 
 namespace Email\Mailer\SendGrid;
 
-use SendGrid\Email;
+use Email\EmailInterface;
+use SendGrid;
 
 class Mailer
 {
@@ -10,66 +11,37 @@ class Mailer
      * @var SendGrid $sendGrid
      */
     protected $sendGrid;
+
     /**
-     * @var Email $mail
+     * @var SendGridEmailFactoryInterface $sendGridEmailFactory
      */
-    protected $mail;
+    protected $sendGridEmailFactory;
+
     /**
-     * @var string $subject
+     * @param                               $apiUserOrKey
+     * @param null                          $apiKeyOrOptions
+     * @param array                         $options
+     * @param SendGridEmailFactoryInterface $sendGridEmailFactory
      */
-    protected $subject;
-    /**
-     * @var string $body
-     */
-    protected $body;
-    /**
-     * @var array $attachments
-     */
-    protected $attachments;
-    /**
-     * @param SendGrid $sendGrid
-     * @param Email    $mail
-     */
-    public function __construct(SendGrid $sendGrid, Email $mail)
-    {
-        $this->sendGrid = $sendGrid;
-        $this->mail     = $mail;
+    public function __construct(
+        $apiUserOrKey,
+        $apiKeyOrOptions = null,
+        $options = [],
+        SendGridEmailFactoryInterface $sendGridEmailFactory
+    ) {
+        $this->sendGrid             = new SendGrid($apiUserOrKey, $apiKeyOrOptions, $options);
+        $this->sendGridEmailFactory = $sendGridEmailFactory;
     }
 
     /**
-     * Set Subject
+     * @param EmailInterface $email
+     * @param array          $options
      *
-     * @param string $subject
-     *
-     * @return $this
+     * @throws SendGrid\Exception
      */
-    public function setSubject($subject)
+    public function send(EmailInterface $email, array $options)
     {
-        $this->subject = $subject;
-        return $this;
-    }
-
-    /**
-     * @param string $attachment
-     */
-    public function addAttachment($attachment)
-    {
-        $this->attachments[] = $attachment;
-    }
-
-    /**
-     *
-     * @throws \SendGrid\Exception
-     */
-    public function send()
-    {
-        $this->mail
-            ->setSubject($this->subject)
-            ->setHtml($this->body)
-            ->setText(htmlspecialchars($this->body));
-        if (!empty($this->attachments)) {
-            $this->mail->setAttachments($this->attachments);
-        }
-        $this->sendGrid->send($this->mail);
+        $sendgridEmail = $this->sendGridEmailFactory->getSendGridEmail($email, $options);
+        $this->sendGrid->send($sendgridEmail);
     }
 }

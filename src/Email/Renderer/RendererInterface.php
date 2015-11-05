@@ -2,10 +2,13 @@
 
 namespace Email\Render;
 
-/**
- * Interface RendererInterface.
- */
 interface RendererInterface
 {
+    /**
+     * @param       $name
+     * @param array $context
+     *
+     * @return mixed
+     */
     public function render($name, $context = array());
 }
