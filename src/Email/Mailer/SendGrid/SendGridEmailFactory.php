@@ -20,7 +20,6 @@ class SendGridEmailFactory implements SendGridEmailFactoryInterface
         $sendGridEmail->setHtml($email->getHtml());
 
         if (array_key_exists('categories', $options)) {
-
             foreach ($options['categories'] as $category) {
                 $sendGridEmail->addCategory($category);
             }

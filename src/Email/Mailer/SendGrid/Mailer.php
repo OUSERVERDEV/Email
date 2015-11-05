@@ -3,6 +3,7 @@
 namespace Email\Mailer\SendGrid;
 
 use Email\EmailInterface;
+use Email\Mailer\MailerException;
 use Email\Mailer\MailerInterface;
 use SendGrid;
 
@@ -36,6 +37,11 @@ class Mailer implements MailerInterface
     public function send(EmailInterface $email, array $options)
     {
         $sendgridEmail = $this->sendGridEmailFactory->createSendGridEmail($email, $options);
-        $this->sendGrid->send($sendgridEmail);
+
+        try {
+            $this->sendGrid->send($sendgridEmail);
+        } catch (\SendGrid\Exception $exception) {
+            throw new MailerException($exception->getMessage(), 0, [$exception]);
+        }
     }
 }

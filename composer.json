@@ -2,6 +2,7 @@
     "name": "alexlbr/email",
     "type": "library",
     "description": "Send emails in PHP.",
+    "version": "1.0.0",
     "keywords": [
         "Mail",
         "sendgrid"
