@@ -18,18 +18,14 @@ class Mailer
     protected $sendGridEmailFactory;
 
     /**
-     * @param                               $apiUserOrKey
-     * @param null                          $apiKeyOrOptions
-     * @param array                         $options
      * @param SendGridEmailFactoryInterface $sendGridEmailFactory
+     * @param SendGrid                      $sendGrid
      */
     public function __construct(
-        $apiUserOrKey,
-        $apiKeyOrOptions = null,
-        $options = [],
-        SendGridEmailFactoryInterface $sendGridEmailFactory
+        SendGridEmailFactoryInterface $sendGridEmailFactory,
+        SendGrid $sendGrid
     ) {
-        $this->sendGrid             = new SendGrid($apiUserOrKey, $apiKeyOrOptions, $options);
+        $this->sendGrid             = $sendGrid;
         $this->sendGridEmailFactory = $sendGridEmailFactory;
     }
 
