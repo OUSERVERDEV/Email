@@ -72,7 +72,7 @@ class Email implements EmailInterface
     public function addTo($to)
     {
         if (false === is_array($this->to)) {
-            $this->to = [];
+            $this->to = array();
         }
 
         if (is_array($to)) {
