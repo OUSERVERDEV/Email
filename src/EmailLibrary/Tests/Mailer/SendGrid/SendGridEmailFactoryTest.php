@@ -6,7 +6,7 @@ use Alexlbr\EmailLibrary\Mailer\SendGrid\SendGridEmailFactory;
 
 class SendGridEmailFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCreateSendGridEmail()
+    public function testCreateSendGridEmailByEmailInterface()
     {
         $email = $this->getMockBuilder('\Alexlbr\EmailLibrary\Email')
             ->disableOriginalConstructor()

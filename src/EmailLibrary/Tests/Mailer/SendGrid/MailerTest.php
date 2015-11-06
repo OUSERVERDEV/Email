@@ -6,7 +6,7 @@ use Alexlbr\EmailLibrary\Mailer\SendGrid\Mailer;
 
 class MailerTest extends \PHPUnit_Framework_TestCase
 {
-    public function testSend()
+    public function testSendEmail()
     {
         $sendGridEmail = $this->getMockBuilder('\SendGrid\Email')
             ->getMock();
