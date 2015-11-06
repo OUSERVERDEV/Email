@@ -16,8 +16,8 @@ class SendGridEmailFactory implements SendGridEmailFactoryInterface
         $sendGridEmail->addTo($email->getTo());
         $sendGridEmail->setFrom($email->getFrom());
         $sendGridEmail->setSubject($email->getSubject());
-        $sendGridEmail->setText($email->getText());
-        $sendGridEmail->setHtml($email->getHtml());
+        $sendGridEmail->setText($email->getBodyText());
+        $sendGridEmail->setHtml($email->getBodyHtml());
 
         if (array_key_exists('categories', $options)) {
             foreach ($options['categories'] as $category) {
