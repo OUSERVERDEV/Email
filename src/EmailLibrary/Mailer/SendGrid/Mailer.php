@@ -34,9 +34,9 @@ class Mailer implements MailerInterface
     /**
      * {@inheritDoc}
      */
-    public function send(EmailInterface $email, array $options)
+    public function send(EmailInterface $email)
     {
-        $sendgridEmail = $this->sendGridEmailFactory->createSendGridEmail($email, $options);
+        $sendgridEmail = $this->sendGridEmailFactory->createSendGridEmail($email);
 
         try {
             $this->sendGrid->send($sendgridEmail);

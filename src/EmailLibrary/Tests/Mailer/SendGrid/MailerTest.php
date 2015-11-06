@@ -6,7 +6,31 @@ use Alexlbr\EmailLibrary\Mailer\SendGrid\Mailer;
 
 class MailerTest extends \PHPUnit_Framework_TestCase
 {
-    public function testSendEmail()
+    public function testSendSendGridDecoratorEmail()
+    {
+        $emailDecorator = $this->getMockBuilder('\Alexlbr\EmailLibrary\Mailer\SendGrid\EmailDecorator')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $sendGrid = $this->getMockBuilder('\SendGrid')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $sendGridEmail = $this->getMockBuilder('\SendGrid\Email')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $sendGridEmailFactory = $this->getMockBuilder('\Alexlbr\EmailLibrary\Mailer\SendGrid\SendGridEmailFactory')
+            ->getMock();
+
+        $sendGridEmailFactory->method('createSendGridEmail')
+            ->willReturn($sendGridEmail);
+
+        $mailer = new Mailer($sendGridEmailFactory, $sendGrid);
+        $mailer->send($emailDecorator);
+    }
+
+    public function testSendGenericEmail()
     {
         $sendGridEmail = $this->getMockBuilder('\SendGrid\Email')
             ->getMock();
@@ -26,6 +50,6 @@ class MailerTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $mailer = new Mailer($sendGridEmailFactory, $sendGrid);
-        $mailer->send($email, array());
+        $mailer->send($email);
     }
 }
