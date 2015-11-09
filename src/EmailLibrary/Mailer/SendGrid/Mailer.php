@@ -20,6 +20,8 @@ class Mailer implements MailerInterface
     protected $sendGridEmailFactory;
 
     /**
+     * Constructor.
+     *
      * @param SendGridEmailFactoryInterface $sendGridEmailFactory
      * @param SendGrid                      $sendGrid
      */
@@ -41,7 +43,7 @@ class Mailer implements MailerInterface
         try {
             $this->sendGrid->send($sendgridEmail);
         } catch (\SendGrid\Exception $exception) {
-            throw new MailerException($exception->getMessage(), 0, [$exception]);
+            throw new MailerException($exception->getMessage(), 0, array($exception));
         }
     }
 }

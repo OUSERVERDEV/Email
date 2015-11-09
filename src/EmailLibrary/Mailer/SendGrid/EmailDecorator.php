@@ -1,20 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ironweb
- * Date: 06/11/15
- * Time: 13:55
- */
 
 namespace Alexlbr\EmailLibrary\Mailer\SendGrid;
-
 
 use Alexlbr\EmailLibrary\EmailInterface;
 
 class EmailDecorator implements EmailInterface
 {
+    /**
+     * @var array
+     */
     protected $categories = array();
 
+    /**
+     * Constructor.
+     *
+     * @param EmailInterface $email
+     */
     public function __construct(EmailInterface $email)
     {
         $this->email = $email;
@@ -51,6 +52,9 @@ class EmailDecorator implements EmailInterface
      */
     public function addCategory($category)
     {
+        if (!is_array($this->categories)) {
+            $this->categories = array();
+        }
         $this->categories[] = $category;
 
         return $this;

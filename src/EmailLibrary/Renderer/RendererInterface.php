@@ -5,8 +5,8 @@ namespace Alexlbr\EmailLibrary\Render;
 interface RendererInterface
 {
     /**
-     * @param       $name
-     * @param array $context
+     * @param string $name
+     * @param array  $context
      *
      * @return mixed
      */
