@@ -20,6 +20,10 @@ class SendGridEmailFactory implements SendGridEmailFactoryInterface
         $sendGridEmail->setText($email->getBodyText());
         $sendGridEmail->setHtml($email->getBodyHtml());
 
+        if (is_array($email->getAttachments())) {
+            $sendGridEmail->setAttachments($email->getAttachments());
+        }
+
         if ($email instanceof EmailDecorator) {
 
             $sendGridEmail->setCategories($email->getCategories());

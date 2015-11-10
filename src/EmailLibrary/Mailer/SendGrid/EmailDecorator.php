@@ -13,7 +13,7 @@ use Alexlbr\EmailLibrary\EmailInterface;
 
 class EmailDecorator implements EmailInterface
 {
-    protected $categories = array();
+    protected $categories = [];
 
     public function __construct(EmailInterface $email)
     {
@@ -104,5 +104,23 @@ class EmailDecorator implements EmailInterface
     public function getBodyText()
     {
         return $this->email->getBodyText();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAttachments()
+    {
+        return $this->email->getAttachments();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addAttachment($attachment)
+    {
+        $this->email->addAttachment($attachment);
+
+        return $this;
     }
 }

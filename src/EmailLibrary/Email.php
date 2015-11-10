@@ -30,6 +30,11 @@ class Email implements EmailInterface
     protected $bodyText;
 
     /**
+     * @var array
+     */
+    protected $attachments = [];
+
+    /**
      * @param string $from
      * @param array  $to
      * @param string $subject
@@ -43,11 +48,11 @@ class Email implements EmailInterface
         $bodyHtml = null,
         $bodyText = null
     ) {
-        $this->from     = $from;
-        $this->to       = $to;
-        $this->subject  = $subject;
-        $this->bodyHtml = $bodyHtml;
-        $this->bodyText = $bodyText;
+        $this->from        = $from;
+        $this->to          = $to;
+        $this->subject     = $subject;
+        $this->bodyHtml    = $bodyHtml;
+        $this->bodyText    = $bodyText;
     }
 
     /**
@@ -106,5 +111,31 @@ class Email implements EmailInterface
     public function getBodyText()
     {
         return $this->bodyText;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAttachments()
+    {
+        return $this->attachments;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addAttachment($pathToAttachment)
+    {
+        if (false === is_array($this->attachments)) {
+            $this->attachments = [];
+        }
+
+        if (is_array($pathToAttachment)) {
+            $this->attachments = array_merge($this->attachments, $pathToAttachment);
+        } else {
+            $this->attachments[] = $pathToAttachment;
+        }
+
+        return $this;
     }
 }

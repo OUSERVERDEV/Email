@@ -30,7 +30,17 @@ interface EmailInterface
     public function getBodyHtml();
 
     /**
+     * @return array
+     */
+    public function getAttachments();
+
+    /**
      * @param array|string $to
      */
     public function addTo($to);
+
+    /**
+     * @param string $pathToAttachment
+     */
+    public function addAttachment($pathToAttachment);
 }
