@@ -25,7 +25,6 @@ class SendGridEmailFactory implements SendGridEmailFactoryInterface
         }
 
         if ($email instanceof EmailDecorator) {
-
             $sendGridEmail->setCategories($email->getCategories());
         }
 

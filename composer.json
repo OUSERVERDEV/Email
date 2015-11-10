@@ -1,15 +1,16 @@
 {
     "name": "alexlbr/email",
     "type": "library",
-    "description": "Send emails in PHP.",
-    "version": "1.0.0",
+    "description": "Abstract sender for emails in PHP.",
     "keywords": [
         "Mail",
-        "sendgrid"
+        "sendgrid",
+        "SwiftMailer",
+        "PHP"
     ],
     "license": "MIT",
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.3",
         "sendgrid/sendgrid": "~4.0"
     },
     "autoload": {
