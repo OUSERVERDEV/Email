@@ -1,6 +1,6 @@
 <?php
 
-namespace Alexlbr\EmailLibrary\Mailer\SendGrid;
+namespace Alexlbr\EmailLibrary\Mailer\SendGrid\Factory;
 
 use SendGrid\Email as SendGridEmail;
 use Alexlbr\EmailLibrary\EmailInterface;

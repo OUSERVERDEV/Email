@@ -5,6 +5,8 @@ namespace Alexlbr\EmailLibrary\Mailer\SendGrid;
 use Alexlbr\EmailLibrary\EmailInterface;
 use Alexlbr\EmailLibrary\Mailer\MailerException;
 use Alexlbr\EmailLibrary\Mailer\MailerInterface;
+use Alexlbr\EmailLibrary\Mailer\SendGrid\Factory\SendGridEmailFactoryInterface;
+use Alexlbr\EmailLibrary\Mailer\SendGrid\Factory\SendGridResponseFactoryInterface;
 use SendGrid;
 
 class Mailer implements MailerInterface
@@ -20,17 +22,18 @@ class Mailer implements MailerInterface
     protected $sendGridEmailFactory;
 
     /**
-     * Constructor.
-     *
-     * @param SendGridEmailFactoryInterface $sendGridEmailFactory
-     * @param SendGrid                      $sendGrid
+     * @param SendGridEmailFactoryInterface    $sendGridEmailFactory
+     * @param SendGrid                         $sendGrid
+     * @param SendGridResponseFactoryInterface $sendGridResponseFactory
      */
     public function __construct(
         SendGridEmailFactoryInterface $sendGridEmailFactory,
-        SendGrid $sendGrid
+        SendGrid $sendGrid,
+        SendGridResponseFactoryInterface $sendGridResponseFactory
     ) {
-        $this->sendGrid             = $sendGrid;
-        $this->sendGridEmailFactory = $sendGridEmailFactory;
+        $this->sendGrid                = $sendGrid;
+        $this->sendGridEmailFactory    = $sendGridEmailFactory;
+        $this->sendGridResponseFactory = $sendGridResponseFactory;
     }
 
     /**
@@ -41,9 +44,13 @@ class Mailer implements MailerInterface
         $sendgridEmail = $this->sendGridEmailFactory->createSendGridEmail($email);
 
         try {
-            $this->sendGrid->send($sendgridEmail);
+            $sendGridReponse = $this->sendGrid->send($sendgridEmail);
+            $mailerResponse  = $this->sendGridResponseFactory->createMailerResponse($sendGridReponse);
+
+            return $mailerResponse;
+            
         } catch (\SendGrid\Exception $exception) {
-            throw new MailerException($exception->getMessage(), 0, array($exception));
+            throw new MailerException($exception->getMessage(), 0, [$exception]);
         }
     }
 }

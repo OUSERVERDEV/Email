@@ -16,17 +16,35 @@ class MailerTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
+        $sendGridResponse = $this->getMockBuilder('SendGrid\Response')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $sendGrid->method('send')
+            ->willReturn($sendGridResponse);
+
         $sendGridEmail = $this->getMockBuilder('\SendGrid\Email')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $sendGridEmailFactory = $this->getMockBuilder('\Alexlbr\EmailLibrary\Mailer\SendGrid\SendGridEmailFactory')
+        $sendGridEmailFactory = $this->getMockBuilder('\Alexlbr\EmailLibrary\Mailer\SendGrid\Factory\SendGridEmailFactory')
             ->getMock();
 
         $sendGridEmailFactory->method('createSendGridEmail')
             ->willReturn($sendGridEmail);
 
-        $mailer = new Mailer($sendGridEmailFactory, $sendGrid);
+        $sendGridResponseFactory = $this->getMockBuilder('\Alexlbr\EmailLibrary\Mailer\SendGrid\Factory\SendGridResponseFactory')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $mailerResponse = $this->getMockBuilder('\Alexlbr\EmailLibrary\Mailer\MailerResponse')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $sendGridResponseFactory->method('createMailerResponse')
+            ->willReturn($mailerResponse);
+
+        $mailer = new Mailer($sendGridEmailFactory, $sendGrid, $sendGridResponseFactory);
         $mailer->send($emailDecorator);
     }
 
@@ -35,21 +53,39 @@ class MailerTest extends \PHPUnit_Framework_TestCase
         $sendGridEmail = $this->getMockBuilder('\SendGrid\Email')
             ->getMock();
 
-        $sendGridEmailFactory = $this->getMockBuilder('\Alexlbr\EmailLibrary\Mailer\SendGrid\SendGridEmailFactory')
+        $sendGrid = $this->getMockBuilder('\SendGrid')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $sendGridResponse = $this->getMockBuilder('SendGrid\Response')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $sendGrid->method('send')
+            ->willReturn($sendGridResponse);
+
+        $sendGridEmailFactory = $this->getMockBuilder('\Alexlbr\EmailLibrary\Mailer\SendGrid\Factory\SendGridEmailFactory')
             ->getMock();
 
         $sendGridEmailFactory->method('createSendGridEmail')
             ->willReturn($sendGridEmail);
 
-        $sendGrid = $this->getMockBuilder('\SendGrid')
-            ->disableOriginalConstructor()
-            ->getMock();
-
         $email = $this->getMockBuilder('\Alexlbr\EmailLibrary\Email')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mailer = new Mailer($sendGridEmailFactory, $sendGrid);
+        $sendGridResponseFactory = $this->getMockBuilder('\Alexlbr\EmailLibrary\Mailer\SendGrid\Factory\SendGridResponseFactory')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $mailerResponse = $this->getMockBuilder('\Alexlbr\EmailLibrary\Mailer\MailerResponse')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $sendGridResponseFactory->method('createMailerResponse')
+            ->willReturn($mailerResponse);
+
+        $mailer = new Mailer($sendGridEmailFactory, $sendGrid, $sendGridResponseFactory);
         $mailer->send($email);
     }
 }

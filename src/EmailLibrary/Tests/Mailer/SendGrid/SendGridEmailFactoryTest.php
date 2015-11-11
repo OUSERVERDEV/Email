@@ -2,7 +2,7 @@
 
 namespace Alexlbr\EmailLibrary\Tests\Mailer\SendGrid;
 
-use Alexlbr\EmailLibrary\Mailer\SendGrid\SendGridEmailFactory;
+use Alexlbr\EmailLibrary\Mailer\SendGrid\Factory\SendGridEmailFactory;
 
 class SendGridEmailFactoryTest extends \PHPUnit_Framework_TestCase
 {
