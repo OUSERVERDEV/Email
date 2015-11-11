@@ -50,7 +50,7 @@ class Mailer implements MailerInterface
             return $mailerResponse;
             
         } catch (\SendGrid\Exception $exception) {
-            throw new MailerException($exception->getMessage(), 0, [$exception]);
+            throw new MailerException($exception->getMessage(), 0, $exception);
         }
     }
 }
