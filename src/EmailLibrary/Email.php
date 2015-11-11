@@ -10,6 +10,11 @@ class Email implements EmailInterface
     protected $from;
 
     /**
+     * @var string
+     */
+    protected $fromName;
+
+    /**
      * @var array
      */
     protected $to;
@@ -35,24 +40,27 @@ class Email implements EmailInterface
     protected $attachments = [];
 
     /**
-     * @param string $from
-     * @param array  $to
-     * @param string $subject
-     * @param string $bodyHtml
-     * @param string $bodyText
+     * @param       $from
+     * @param       $fromName
+     * @param array $to
+     * @param null  $subject
+     * @param null  $bodyHtml
+     * @param null  $bodyText
      */
     public function __construct(
         $from,
+        $fromName,
         array $to,
         $subject = null,
         $bodyHtml = null,
         $bodyText = null
     ) {
-        $this->from        = $from;
-        $this->to          = $to;
-        $this->subject     = $subject;
-        $this->bodyHtml    = $bodyHtml;
-        $this->bodyText    = $bodyText;
+        $this->from     = $from;
+        $this->fromName = $fromName;
+        $this->to       = $to;
+        $this->subject  = $subject;
+        $this->bodyHtml = $bodyHtml;
+        $this->bodyText = $bodyText;
     }
 
     /**
@@ -61,6 +69,14 @@ class Email implements EmailInterface
     public function getFrom()
     {
         return $this->from;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFromName()
+    {
+        return $this->fromName;
     }
 
     /**
@@ -77,7 +93,7 @@ class Email implements EmailInterface
     public function addTo($to)
     {
         if (false === is_array($this->to)) {
-            $this->to = array();
+            $this->to = [];
         }
 
         if (is_array($to)) {

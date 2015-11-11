@@ -71,6 +71,14 @@ class EmailDecorator implements EmailInterface
     /**
      * {@inheritDoc}
      */
+    public function getFromName()
+    {
+        return $this->email->getFromName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getTo()
     {
         return $this->email->getTo();

@@ -10,6 +10,11 @@ interface EmailInterface
     public function getFrom();
 
     /**
+     * @return string
+     */
+    public function getFromName();
+
+    /**
      * @return array
      */
     public function getTo();
