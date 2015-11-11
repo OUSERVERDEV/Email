@@ -14,7 +14,7 @@ class SendGridEmailFactory implements SendGridEmailFactoryInterface
     {
         $sendGridEmail = new SendGridEmail();
 
-        $sendGridEmail->addTo($email->getTo());
+        $sendGridEmail->to = $email->getTo();
         $sendGridEmail->setFrom($email->getFrom());
         $sendGridEmail->setFromName($email->getFromName());
         $sendGridEmail->setSubject($email->getSubject());
