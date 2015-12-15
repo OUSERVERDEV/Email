@@ -2,6 +2,7 @@
 
 namespace Alexlbr\EmailLibrary\Mailer\SendGrid\Factory;
 
+use Alexlbr\EmailLibrary\Mailer\SendGrid\EmailDecorator;
 use SendGrid\Email as SendGridEmail;
 use Alexlbr\EmailLibrary\EmailInterface;
 
@@ -27,6 +28,10 @@ class SendGridEmailFactory implements SendGridEmailFactoryInterface
 
         if ($email instanceof EmailDecorator) {
             $sendGridEmail->setCategories($email->getCategories());
+
+            if (!is_null($email->getSendAt())) {
+                $sendGridEmail->setSendAt($email->getSendAt());
+            }
         }
 
         return $sendGridEmail;

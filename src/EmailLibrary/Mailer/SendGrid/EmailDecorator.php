@@ -12,6 +12,11 @@ class EmailDecorator implements EmailInterface
     protected $categories = array();
 
     /**
+     * @var integer|null
+     */
+    protected $sendAt = null;
+
+    /**
      * Constructor.
      *
      * @param EmailInterface $email
@@ -56,6 +61,26 @@ class EmailDecorator implements EmailInterface
             $this->categories = array();
         }
         $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getSendAt()
+    {
+        return $this->sendAt;
+    }
+
+    /**
+     * @param int|null $sendAt
+     *
+     * @return EmailDecorator
+     */
+    public function setSendAt($sendAt = null)
+    {
+        $this->sendAt = $sendAt;
 
         return $this;
     }
