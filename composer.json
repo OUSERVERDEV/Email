@@ -1,5 +1,5 @@
 {
-    "name": "alexlbr/email",
+    "name": "ouserverdev/email",
     "type": "library",
     "description": "Abstract sender for emails in PHP.",
     "keywords": [
@@ -11,7 +11,7 @@
     "license": "MIT",
     "require": {
         "php": ">=5.3",
-        "sendgrid/sendgrid": "~4.0"
+        "sendgrid/sendgrid": "~5.0"
     },
     "autoload": {
         "psr-4": { "Alexlbr\\": "src/" }
