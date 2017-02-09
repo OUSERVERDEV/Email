@@ -14,9 +14,9 @@ class SendGridResponseFactory implements SendGridResponseFactoryInterface
     public function createMailerResponse(SendGridResponse $sendGridResponse)
     {
         $mailerResponse = new MailerResponse(
-            $sendGridResponse->getCode(),
-            $sendGridResponse->getHeaders()->toArray(),
-            $sendGridResponse->getBody()
+            $sendGridResponse->statusCode(),
+            $sendGridResponse->headers(),
+            $sendGridResponse->body()
         );
 
         return $mailerResponse;

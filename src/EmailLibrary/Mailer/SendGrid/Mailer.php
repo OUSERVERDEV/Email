@@ -22,6 +22,11 @@ class Mailer implements MailerInterface
     protected $sendGridEmailFactory;
 
     /**
+     * @var SendGridResponseFactoryInterface
+     */
+    protected $sendGridResponseFactory;
+
+    /**
      * @param SendGridEmailFactoryInterface    $sendGridEmailFactory
      * @param SendGrid                         $sendGrid
      * @param SendGridResponseFactoryInterface $sendGridResponseFactory
@@ -44,12 +49,12 @@ class Mailer implements MailerInterface
         $sendgridEmail = $this->sendGridEmailFactory->createSendGridEmail($email);
 
         try {
-            $sendGridReponse = $this->sendGrid->send($sendgridEmail);
-            $mailerResponse  = $this->sendGridResponseFactory->createMailerResponse($sendGridReponse);
+            $response = $this->sendGrid->client->mail()->send()->post($sendgridEmail);
+            $mailerResponse  = $this->sendGridResponseFactory->createMailerResponse($response);
 
             return $mailerResponse;
             
-        } catch (\SendGrid\Exception $exception) {
+        } catch (\Exception $exception) {
             throw new MailerException($exception->getMessage(), 0, $exception);
         }
     }
